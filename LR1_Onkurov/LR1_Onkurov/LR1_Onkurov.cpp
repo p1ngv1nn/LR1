@@ -1,43 +1,58 @@
 #include <iostream>
 #include <string>
-#include <sstream>
+#include "Pipe.h"
+#include "KS.h"
 using namespace std;
+bool g_stop;
+void PrintMenu()
+{ 
+    system("cls");
+    cout << "1. Add Pipe" << endl;
+    cout << "2. Add KS" << endl;
+    cout << "3. Loooks all object" << endl;
+    cout << "4. Change pipe" << endl;
+    cout << "5. Change KS"<< endl;
+    cout << "6. Save" << endl;
+    cout << "7. Load" << endl;
+    cout << "0. Exit" << endl;
+    cout << "Number Of Menu:";
+}
+void PunctesOfMenu(int numberOfMenu)
+{
+    switch (numberOfMenu)
+    {
+        case 0:
+            g_stop = false;
+            break;
+        case 1:
+            AddPipe();
+            break;
+        case 2:
+            AddKS();
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+    }
+}
 int main()
 {
-    
-}
-void Menu()
-{
-    system("cls");
-    cout << "1. Добавить трубу" << endl;
-    cout << "2. Добавить КС" << endl;
-    cout << "3. Просмотр всех объектов" << endl;
-    cout << "4. Редактировать трубу" << endl;
-    cout << "5. Редактировать КС" << endl;
-    cout << "6. Сохранить" << endl;
-    cout << "7. Загрузить" << endl;
-    cout << "0. Выход" << endl;
-    cout << ">";
-}
-int Get_NumberOfMenu (int inputNumber)
-{
-    int number;
-    if (inputNumber<8 && inputNumber>=0)
+    g_stop = true;
+    int numberOfMenu;
+    while (g_stop)
     {
-        return inputNumber;
+        PrintMenu();
+        cin >> numberOfMenu;
+        PunctesOfMenu (numberOfMenu);
     }
-    else
-    {
-        while (true)
-        {
-            cout << "Неверный ввод" << endl;
-            cin >> number;
-
-        }
-    }
-   
 }
-
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 

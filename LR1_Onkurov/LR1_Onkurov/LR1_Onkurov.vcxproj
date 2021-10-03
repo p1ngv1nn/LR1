@@ -141,6 +141,10 @@
   <ItemGroup>
     <ClCompile Include="LR1_Onkurov.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KS.h" />
+    <ClInclude Include="Pipe.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
