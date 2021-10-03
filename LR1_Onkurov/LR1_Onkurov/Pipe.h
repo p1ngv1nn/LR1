@@ -1,20 +1,36 @@
 #include <iostream>
 #include <string>
 using namespace std; 
-string g_Pipename;
 struct Pipe
 {
+    string Name;
     int id;
-    int dlina;
-    int diametr;
+    double dlina;
+    double diametr;
 };
-void AddPipe()
+void PrintPipe(Pipe Obj)
 {
-    system("cls");
-    cout << "Please enter the name of pipe:";
-    cin >> g_Pipename;
-    Pipe g_Pipename;
-    cout << "id:"; cin >> g_Pipename.id; cout << endl;
-    cout << "dlina:"; cin >> g_Pipename.dlina; cout << endl;
-    cout << "diametr:"; cin >> g_Pipename.diametr; cout << endl;
+    cout << "Pipe" << endl;
+    cout << "Name:"<< Obj.Name << endl;
+    cout << "id:" << Obj.id << endl;
+    cout << "dlina:" << Obj.dlina << endl;
+    cout << "diametr:" << Obj.diametr << endl;
+    cout << endl;
+}
+Pipe first = {};
+void AddPipe(bool write)
+{ 
+    if (write)
+    {
+        system("cls");
+        cout << "name:"; cin >> first.Name; cout << endl;
+        cout << "id:"; cin >> first.id; cout << endl;
+        cout << "dlina:"; cin >> first.dlina; cout << endl;
+        cout << "diametr:"; cin >> first.diametr; cout << endl;
+    }
+    else
+    {
+        system("cls");
+        PrintPipe(first);
+    }
 }

@@ -1,38 +1,54 @@
 #include <iostream>
 #include <string>
 using namespace std;
-string g_KSname;
 struct KS
 {
+    string Name;
     int id;
     int kolvocehov;
     int kolvocehovvrabote;
     double efektivnost;
 };
-void AddKS()
+void PrintKS(KS Obj)
 {
-    bool pravilnost = false;
-    while (pravilnost == false) 
+    cout << "Compressor station" << endl;
+    cout << "Name:" << Obj.Name << endl;
+    cout << "id:" << Obj.id << endl;
+    cout << "dlina:" << Obj.kolvocehov << endl;
+    cout << "diametr:" << Obj.kolvocehovvrabote << endl;
+    cout << "efektivnost:" << Obj.efektivnost << "%" << endl;
+    system("pause");
+}
+KS KSname = {};
+void AddKS(bool write)
+{
+    if (write)
     {
-        system("cls");
-        cout << "Please enter the name of pipe:";
-        cin >> g_KSname;
-        KS g_KSname;
-        cout << "id:"; cin >> g_KSname.id; cout << endl;
-        cout << "kolvocehov:"; cin >> g_KSname.kolvocehov; cout << endl;
-        cout << "kolvocehovvrabote:"; cin >> g_KSname.kolvocehovvrabote; cout << endl;
-        
-        if (g_KSname.kolvocehov < g_KSname.kolvocehovvrabote)
+        bool pravilnost = true;
+        while (pravilnost)
         {
-            cout << "kolvocehov doljno bit bolshe chem kolvocehov v rabote" << endl;
-            system("pause");
+            system("cls");
+            cout << "name:"; cin >> KSname.Name; cout << endl;
+            cout << "id:"; cin >> KSname.id; cout << endl;
+            cout << "kolvocehov:"; cin >> KSname.kolvocehov; cout << endl;
+            cout << "kolvocehovvrabote:"; cin >> KSname.kolvocehovvrabote; cout << endl;
+
+            if (KSname.kolvocehov < KSname.kolvocehovvrabote)
+            {
+                cout << "kolvocehov doljno bit bolshe chem kolvocehov v rabote" << endl;
+                system("pause");
+            }
+            else
+            {
+                KSname.efektivnost = (double)KSname.kolvocehovvrabote / KSname.kolvocehov * 100;
+                cout << "efektivnost:" << KSname.efektivnost << "%" << endl;
+                system("pause");
+                pravilnost = false;
+            }
         }
-        else
-        {
-            g_KSname.efektivnost = (double)g_KSname.kolvocehovvrabote/g_KSname.kolvocehov*100;
-            cout << "efektivnost:"<<g_KSname.efektivnost<<"%"<< endl;
-            system("pause");
-            pravilnost = true;
-        }
+    }
+    else 
+    {
+        PrintKS(KSname);
     }
 }

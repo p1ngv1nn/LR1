@@ -22,15 +22,17 @@ void PunctesOfMenu(int numberOfMenu)
     switch (numberOfMenu)
     {
         case 0:
-            g_stop = false;
+            g_stop=false;
             break;
         case 1:
-            AddPipe();
+            AddPipe(true);
             break;
         case 2:
-            AddKS();
+            AddKS(true);
             break;
         case 3:
+            AddPipe(false);
+            AddKS(false);
             break;
         case 4:
             break;
