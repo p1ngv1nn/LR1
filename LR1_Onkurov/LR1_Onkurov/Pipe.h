@@ -17,8 +17,36 @@ void PrintPipe(Pipe Obj)
     cout << "diametr:" << Obj.diametr << endl;
     cout << endl;
 }
+void PrintPipeMenu()
+{
+    system("cls");
+    cout << "1. Change Name" << endl;
+    cout << "2. Change id" << endl;
+    cout << "3. Change dlina" << endl;
+    cout << "4. Change diametr" << endl;
+    cout << "Number Of Menu:";
+}
+void PunctesOfPipeMenu(int numberOfmenu,Pipe Obj)
+{
+    system("cls");
+    switch (numberOfmenu)
+    {
+    case 1:
+        cout << "name:"; cin >> Obj.Name; cout << endl;
+        break;
+    case 2:
+        cout << "id:"; cin >> Obj.id; cout << endl;
+        break;
+    case 3:
+        cout << "dlina:"; cin >> Obj.dlina; cout << endl;
+        break;
+    case 4:
+        cout << "diametr:"; cin >> Obj.diametr; cout << endl;
+        break;
+    }
+}
 Pipe first = {};
-void AddPipe(bool write)
+void AddPipe(bool write, bool rewrite)
 { 
     if (write)
     {
@@ -30,7 +58,18 @@ void AddPipe(bool write)
     }
     else
     {
+        if (rewrite)
+        {
+            int numberOfMenu;
+            PrintPipeMenu();
+            cin >> numberOfMenu;
+            PunctesOfPipeMenu(numberOfMenu, first);
+        }
+        else
+        {
         system("cls");
         PrintPipe(first);
+        }
+        
     }
 }

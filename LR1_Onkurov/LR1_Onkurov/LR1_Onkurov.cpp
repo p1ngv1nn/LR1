@@ -10,8 +10,8 @@ void PrintMenu()
     cout << "1. Add Pipe" << endl;
     cout << "2. Add KS" << endl;
     cout << "3. Loooks all object" << endl;
-    cout << "4. Change pipe" << endl;
-    cout << "5. Change KS"<< endl;
+    cout << "4. Change pipe characteristic" << endl;
+    cout << "5. Change KS characteristic"<< endl;
     cout << "6. Save" << endl;
     cout << "7. Load" << endl;
     cout << "0. Exit" << endl;
@@ -25,18 +25,20 @@ void PunctesOfMenu(int numberOfMenu)
             g_stop=false;
             break;
         case 1:
-            AddPipe(true);
+            AddPipe(true,false);
             break;
         case 2:
-            AddKS(true);
+            AddKS(true,false);
             break;
         case 3:
-            AddPipe(false);
-            AddKS(false);
+            AddPipe(false,false);
+            AddKS(false,false);
             break;
         case 4:
+            AddPipe(false, true);
             break;
         case 5:
+            AddKS(false, true);
             break;
         case 6:
             break;

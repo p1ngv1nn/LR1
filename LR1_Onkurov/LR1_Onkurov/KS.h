@@ -9,6 +9,34 @@ struct KS
     int kolvocehovvrabote;
     double efektivnost;
 };
+void PrintKSMenu()
+{
+    system("cls");
+    cout << "1. Change Name" << endl;
+    cout << "2. Change id" << endl;
+    cout << "3. Change kolvocehov" << endl;
+    cout << "4. Change kolvocehovvrabote" << endl;
+    cout << "Number Of Menu:";
+}
+void PunctesOfPipeMenu(int numberOfmenu, KS Obj)
+{
+    system("cls");
+    switch (numberOfmenu)
+    {
+    case 1:
+        cout << "name:"; cin >> Obj.Name; cout << endl;
+        break;
+    case 2:
+        cout << "id:"; cin >> Obj.id; cout << endl;
+        break;
+    case 3:
+        cout << "kolvocehov:"; cin >> Obj.kolvocehov; cout << endl;
+        break;
+    case 4:
+        cout << "efektivnost:"; cin >> Obj.kolvocehovvrabote; cout << endl;
+        break;
+    }
+}
 void PrintKS(KS Obj)
 {
     cout << "Compressor station" << endl;
@@ -20,7 +48,7 @@ void PrintKS(KS Obj)
     system("pause");
 }
 KS KSname = {};
-void AddKS(bool write)
+void AddKS(bool write, bool rewrite)
 {
     if (write)
     {
@@ -49,6 +77,17 @@ void AddKS(bool write)
     }
     else 
     {
-        PrintKS(KSname);
+        if (rewrite)
+        {
+            int numberOfMenu;
+            PrintKSMenu();
+            cin >> numberOfMenu;
+
+        }
+        else
+        {
+            PrintKS(KSname);
+        }
+       
     }
 }
