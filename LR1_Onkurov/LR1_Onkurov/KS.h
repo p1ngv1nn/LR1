@@ -18,7 +18,7 @@ void PrintKSMenu()
     cout << "4. Change kolvocehovvrabote" << endl;
     cout << "Number Of Menu:";
 }
-void PunctesOfPipeMenu(int numberOfmenu, KS Obj)
+void PunctesOfKSMenu(int numberOfmenu, KS Obj)
 {
     system("cls");
     switch (numberOfmenu)
@@ -39,13 +39,21 @@ void PunctesOfPipeMenu(int numberOfmenu, KS Obj)
 }
 void PrintKS(KS Obj)
 {
-    cout << "Compressor station" << endl;
-    cout << "Name:" << Obj.Name << endl;
-    cout << "id:" << Obj.id << endl;
-    cout << "dlina:" << Obj.kolvocehov << endl;
-    cout << "diametr:" << Obj.kolvocehovvrabote << endl;
-    cout << "efektivnost:" << Obj.efektivnost << "%" << endl;
-    system("pause");
+    if (Obj.Name == "")
+    {
+        cout << "Dont have KS" << endl; system("pause");
+    }
+    else
+    {
+        cout << "Compressor station" << endl;
+        cout << "Name:" << Obj.Name << endl;
+        cout << "id:" << Obj.id << endl;
+        cout << "dlina:" << Obj.kolvocehov << endl;
+        cout << "diametr:" << Obj.kolvocehovvrabote << endl;
+        cout << "efektivnost:" << Obj.efektivnost << "%" << endl;
+        system("pause");
+    }
+    
 }
 KS KSname = {};
 void AddKS(bool write, bool rewrite)
@@ -82,12 +90,11 @@ void AddKS(bool write, bool rewrite)
             int numberOfMenu;
             PrintKSMenu();
             cin >> numberOfMenu;
-
+            PunctesOfKSMenu(numberOfMenu,KSname);
         }
         else
         {
             PrintKS(KSname);
         }
-       
     }
 }

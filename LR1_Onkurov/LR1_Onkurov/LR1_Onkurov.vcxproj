@@ -142,6 +142,7 @@
     <ClCompile Include="LR1_Onkurov.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Checker.h" />
     <ClInclude Include="KS.h" />
     <ClInclude Include="Pipe.h" />
   </ItemGroup>

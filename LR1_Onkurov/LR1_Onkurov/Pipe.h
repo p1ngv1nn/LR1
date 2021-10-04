@@ -10,12 +10,20 @@ struct Pipe
 };
 void PrintPipe(Pipe Obj)
 {
-    cout << "Pipe" << endl;
-    cout << "Name:"<< Obj.Name << endl;
-    cout << "id:" << Obj.id << endl;
-    cout << "dlina:" << Obj.dlina << endl;
-    cout << "diametr:" << Obj.diametr << endl;
-    cout << endl;
+    if (Obj.Name == "")
+    {
+        cout << "Dont have Pipe" << endl; cout << endl; 
+    }
+    else
+    {
+        cout << "Pipe" << endl;
+        cout << "Name:"<< Obj.Name << endl;
+        cout << "id:" << Obj.id << endl;
+        cout << "dlina:" << Obj.dlina << endl;
+        cout << "diametr:" << Obj.diametr << endl;
+        cout << endl; system("pause");
+    }
+    
 }
 void PrintPipeMenu()
 {
@@ -32,7 +40,7 @@ void PunctesOfPipeMenu(int numberOfmenu,Pipe Obj)
     switch (numberOfmenu)
     {
     case 1:
-        cout << "name:"; cin >> Obj.Name; cout << endl;
+        cout << "Name:"; cin >> Obj.Name; cout << endl;
         break;
     case 2:
         cout << "id:"; cin >> Obj.id; cout << endl;

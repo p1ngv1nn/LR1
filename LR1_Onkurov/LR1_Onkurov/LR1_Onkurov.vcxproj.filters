@@ -26,5 +26,8 @@
     <ClInclude Include="KS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Checker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

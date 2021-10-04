@@ -2,6 +2,7 @@
 #include <string>
 #include "Pipe.h"
 #include "KS.h"
+#include "Checker.h" 
 using namespace std;
 bool g_stop;
 void PrintMenu()
@@ -17,27 +18,27 @@ void PrintMenu()
     cout << "0. Exit" << endl;
     cout << "Number Of Menu:";
 }
-void PunctesOfMenu(int numberOfMenu)
+void PunctesOfMenu(char numberOfMenu)
 {
     switch (numberOfMenu)
     {
-        case 0:
+        case '0':
             g_stop=false;
             break;
-        case 1:
+        case '1':
             AddPipe(true,false);
             break;
-        case 2:
+        case '2':
             AddKS(true,false);
             break;
-        case 3:
+        case '3':
             AddPipe(false,false);
             AddKS(false,false);
             break;
-        case 4:
+        case '4':
             AddPipe(false, true);
             break;
-        case 5:
+        case '5':
             AddKS(false, true);
             break;
         case 6:
@@ -49,13 +50,22 @@ void PunctesOfMenu(int numberOfMenu)
 int main()
 {
     g_stop = true;
-    int numberOfMenu;
+    string numberOfMenu = {};
     while (g_stop)
     {
         PrintMenu();
         cin >> numberOfMenu;
-        PunctesOfMenu (numberOfMenu);
-    }
+        if (CheckNumberOfMenu(numberOfMenu))
+        {
+            PunctesOfMenu(numberOfMenu[0]);
+        }
+        else
+        {
+           system("cls");
+           cout << "Incorrect Input" << endl;;
+           system("pause");
+        }
+    }   
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
