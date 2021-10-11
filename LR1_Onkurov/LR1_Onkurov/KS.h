@@ -4,10 +4,10 @@ using namespace std;
 struct KS
 {
     string Name;
-    int id;
-    int kolvocehov;
-    int kolvocehovvrabote;
-    double efektivnost;
+    string id;
+    string kolvocehov;
+    string kolvocehovvrabote;
+    string efektivnost;
 };
 void PrintKSMenu()
 {
@@ -35,6 +35,29 @@ void PunctesOfKSMenu(int numberOfmenu, KS Obj)
     case 4:
         cout << "efektivnost:"; cin >> Obj.kolvocehovvrabote; cout << endl;
         break;
+    }
+}
+bool CheckKSAlphabet(string arrayOfNumbers)
+{
+    char arrayNumbersOfMenu[10] = { '0','1','2','3','4','5','6','7','8','9' };
+    int stop = 0;
+    for (int i = 0; i < arrayOfNumbers.length(); i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            if (arrayOfNumbers[i] == arrayNumbersOfMenu[j])
+            {
+                stop += 1;
+            }
+        }
+    }
+    if (stop != 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
     }
 }
 void PrintKS(KS Obj)
@@ -65,19 +88,51 @@ void AddKS(bool write, bool rewrite)
         {
             system("cls");
             cout << "name:"; cin >> KSname.Name; cout << endl;
+            system("cls");
             cout << "id:"; cin >> KSname.id; cout << endl;
-            cout << "kolvocehov:"; cin >> KSname.kolvocehov; cout << endl;
-            cout << "kolvocehovvrabote:"; cin >> KSname.kolvocehovvrabote; cout << endl;
-
-            if (KSname.kolvocehov < KSname.kolvocehovvrabote)
+            bool stopForNumbers = true;
+            while (stopForNumbers)
+            {
+                system("cls");
+                cout << "Kolvocehov:";
+                cin >> KSname.kolvocehov;
+                if (CheckAlphabet(KSname.kolvocehov))
+                {
+                    system("cls");
+                    cout << "Incorrect Input" << endl;;
+                    system("pause");
+                }
+                else
+                {
+                    stopForNumbers = false;
+                    cout << endl;
+                }
+            }
+            stopForNumbers = true;
+            while (stopForNumbers)
+            {
+                system("cls");
+                cout << "kolvocehovvrabote";
+                cin >> KSname.kolvocehovvrabote;
+                if (CheckAlphabet(KSname.kolvocehovvrabote))
+                {
+                    system("cls");
+                    cout << "Incorrect Input" << endl;;
+                    system("pause");
+                }
+                else
+                {
+                    stopForNumbers = false;
+                    cout << endl;
+                }
+            }
+            if (KSname.kolvocehov > KSname.kolvocehovvrabote)
             {
                 cout << "kolvocehov doljno bit bolshe chem kolvocehov v rabote" << endl;
                 system("pause");
             }
             else
             {
-                KSname.efektivnost = (double)KSname.kolvocehovvrabote / KSname.kolvocehov * 100;
-                cout << "efektivnost:" << KSname.efektivnost << "%" << endl;
                 system("pause");
                 pravilnost = false;
             }

@@ -4,15 +4,44 @@ using namespace std;
 struct Pipe
 {
     string Name;
-    int id;
-    double dlina;
-    double diametr;
+    string id;
+    string dlina;
+    string diametr;
 };
+bool nonstop; bool stop;
+bool CheckNumberOfPipeMenu(string numberOfMenu)
+{
+    char arrayNumbersOfMenu[8] = { '0','1','2','3','4'};
+    int stop = 0;
+    if (numberOfMenu.length() == 1)
+    {
+        int i = 0;
+        for (i; i < 8; ++i)
+        {
+            if (arrayNumbersOfMenu[i] == numberOfMenu[0])
+            {
+                ++stop;
+            }
+        }
+        if (stop != 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
 void PrintPipe(Pipe Obj)
 {
     if (Obj.Name == "")
     {
-        cout << "Dont have Pipe" << endl; cout << endl; 
+        cout << "Don't have Pipe" << endl; cout << endl; 
     }
     else
     {
@@ -28,28 +57,89 @@ void PrintPipe(Pipe Obj)
 void PrintPipeMenu()
 {
     system("cls");
+    cout << "0. Exit" << endl;
     cout << "1. Change Name" << endl;
     cout << "2. Change id" << endl;
     cout << "3. Change dlina" << endl;
     cout << "4. Change diametr" << endl;
     cout << "Number Of Menu:";
 }
-void PunctesOfPipeMenu(int numberOfmenu,Pipe Obj)
+bool CheckAlphabet(string arrayOfNumbers)
+{   
+    char arrayNumbersOfMenu[10] = { '0','1','2','3','4','5','6','7','8','9'};
+    int stop = 0;
+    for (int i = 0; i < arrayOfNumbers.length(); i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            if (arrayOfNumbers[i] ==arrayNumbersOfMenu[j])
+            {
+                stop += 1;
+            }
+        }
+    }
+    if (stop != 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+void PunctesOfPipeMenu(char numberOfmenu,Pipe Obj)
 {
     system("cls");
     switch (numberOfmenu)
     {
-    case 1:
+    case '0':
+        nonstop = false;
+        break;
+    case '1':
         cout << "Name:"; cin >> Obj.Name; cout << endl;
         break;
-    case 2:
+    case '2':
         cout << "id:"; cin >> Obj.id; cout << endl;
         break;
-    case 3:
-        cout << "dlina:"; cin >> Obj.dlina; cout << endl;
+    case '3':
+        stop = true;
+        while (stop)
+        {
+            system("cls");
+            cout << "dlina:";
+            cin >> Obj.dlina;
+            if (CheckAlphabet(Obj.dlina))
+            {
+                system("cls");
+                cout << "Incorrect Input" << endl;;
+                system("pause");
+            }
+            else
+            {
+                stop = false;
+                cout << endl;
+            }
+        }
         break;
-    case 4:
-        cout << "diametr:"; cin >> Obj.diametr; cout << endl;
+    case '4':
+        stop = true;
+        while (stop)
+        {
+            system("cls");
+            cout << "Diametr:";
+            cin >> Obj.diametr;
+            if (CheckAlphabet(Obj.diametr))
+            {
+                system("cls");
+                cout << "Incorrect Input" << endl;;
+                system("pause");
+            }
+            else
+            {
+                stop = false;
+                cout << endl;
+            }
+        }
         break;
     }
 }
@@ -58,20 +148,67 @@ void AddPipe(bool write, bool rewrite)
 { 
     if (write)
     {
-        system("cls");
-        cout << "name:"; cin >> first.Name; cout << endl;
-        cout << "id:"; cin >> first.id; cout << endl;
-        cout << "dlina:"; cin >> first.dlina; cout << endl;
-        cout << "diametr:"; cin >> first.diametr; cout << endl;
+            system("cls");
+            cout << "name:"; cin >> first.Name; cout << endl; system("cls");
+            cout << "id:"; cin >> first.id; cout << endl;
+            bool stopForNumbers = true; 
+            while (stopForNumbers)
+            {
+                system("cls");
+                cout << "dlina:";
+                cin >> first.dlina;
+                if (CheckAlphabet(first.dlina))
+                {
+                    system("cls");
+                    cout << "Incorrect Input" << endl;;
+                    system("pause");
+                }
+                else
+                {
+                    stopForNumbers = false;
+                    cout << endl;
+                }
+            }
+            stopForNumbers = true;
+            while (stopForNumbers)
+            {
+                system("cls");
+                cout << "Diametr:";
+                cin >> first.diametr;
+                if (CheckAlphabet(first.diametr))
+                {
+                    system("cls");
+                    cout << "Incorrect Input" << endl;;
+                    system("pause");
+                }
+                else
+                {
+                    stopForNumbers = false;
+                    cout << endl;
+                }
+            }
     }
     else
     {
         if (rewrite)
         {
-            int numberOfMenu;
-            PrintPipeMenu();
-            cin >> numberOfMenu;
-            PunctesOfPipeMenu(numberOfMenu, first);
+            string numberOfMenu;
+            nonstop = true;
+            while (nonstop)
+            {
+                PrintPipeMenu();
+                cin >> numberOfMenu;
+                if (CheckNumberOfPipeMenu(numberOfMenu))
+                {
+                    PunctesOfPipeMenu(numberOfMenu[0],first);
+                }
+                else
+                {
+                    system("cls");
+                    cout << "Incorrect Input" << endl;;
+                    system("pause");
+                }
+            }
         }
         else
         {
