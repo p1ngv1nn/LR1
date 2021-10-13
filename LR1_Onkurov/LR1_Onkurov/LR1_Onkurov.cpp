@@ -3,8 +3,9 @@
 #include "Pipe.h"
 #include "KS.h"
 #include "Checker.h" 
+#include <fstream>
 using namespace std;
-bool g_stop;
+bool g_stop; fstream inOut; string line;
 void PrintMenu()
 { 
     system("cls");
@@ -13,8 +14,8 @@ void PrintMenu()
     cout << "3. Loooks all object" << endl;
     cout << "4. Change pipe characteristic" << endl;
     cout << "5. Change KS characteristic"<< endl;
-    cout << "6. Save" << endl;
-    cout << "7. Load" << endl;
+    cout << "6. Save in file.txt" << endl;
+    cout << "7. Description out of file.txt" << endl;
     cout << "0. Exit" << endl;
     cout << "Number Of Menu:";
 }
@@ -41,9 +42,43 @@ void PunctesOfMenu(char numberOfMenu)
         case '5':
             AddKS(false, true);
             break;
-        case 6:
+        case '6':
+            inOut.open("file.txt", ios::out);
+            if (KSname.Name == "")
+            {
+                inOut << "Dont have KS" << endl;
+            }
+            else
+            {
+                inOut << "Compressor station" << endl;
+                inOut << "Name:" << KSname.Name << endl;
+                inOut << "id:" << KSname.id << endl;
+                inOut << "dlina:" << KSname.kolvocehov << endl;
+                inOut << "diametr:" << KSname.kolvocehovvrabote << endl;
+                inOut << "efektivnost:" << KSname.efektivnost << "%" << endl;
+            }
+            if (first.Name == "")
+            {
+                inOut << "Dont have Pipe" << endl;
+            }
+            else
+            {
+                inOut << "Pipe" << endl;
+                inOut << "Name:" << first.Name << endl;
+                inOut << "id:" << first.id << endl;
+                inOut << "dlina:" << first.dlina << endl;
+                inOut << "diametr:" << first.diametr << endl;
+            }
+            inOut.close();
             break;
-        case 7:
+        case '7':
+            inOut.open("file.txt");
+            system("cls");
+            while (getline(inOut, line))
+            {
+                cout << line << endl;
+            }
+            system("pause");
             break;
     }
 }

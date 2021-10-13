@@ -12,7 +12,7 @@ struct KS
 };
 bool CheckNumberOfKSMenu(string numberOfMenu)
 {
-    char arrayNumbersOfMenu[6] = { '0','1','2','3','4','5'};
+    char arrayNumbersOfMenu[10] = { '0','1','2','3','4','5','6','7','8','9' };
     int stop = 0;
     if (numberOfMenu.length() == 1)
     {
@@ -48,7 +48,8 @@ void PrintKSMenu()
     cout << "4. Change kolvocehovvrabote" << endl;
     cout << "5. Change efektivnost" << endl;
     cout << "Number Of Menu:";
-}bool CheckKSAlphabet(string arrayOfNumbers)
+}
+bool CheckKSAlphabet(string arrayOfNumbers)
 {
     char arrayNumbersOfMenu[10] = { '0','1','2','3','4','5','6','7','8','9' };
     int stop = 0;
@@ -92,7 +93,7 @@ void PrintKS(KS Obj)
 KS KSname = {};
 bool CheckEffektivost(string numbersOfEffektivnost)
 {
-    char arrayNumbersOfMenu[10] = { '0','1','2','3','4','6','7','8','9'};
+    char arrayNumbersOfmenu[10] = { '0','1','2','3','4','5','6','7','8','9'};
     if (numbersOfEffektivnost.length() < 4)
     {
         int stop = 0;
@@ -100,7 +101,7 @@ bool CheckEffektivost(string numbersOfEffektivnost)
         {
             for (int j = 0; j < 10; ++j)
             {
-                if (numbersOfEffektivnost[i] == arrayNumbersOfMenu[j])
+                if (numbersOfEffektivnost[i] == arrayNumbersOfmenu[j])
                 {
                     ++stop;
                 }   
@@ -108,11 +109,11 @@ bool CheckEffektivost(string numbersOfEffektivnost)
         }
         if (stop == numbersOfEffektivnost.length())
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
     else
@@ -196,7 +197,6 @@ void PunctesOfKSMenu(char numberOfmenu, KS Obj)
         break;
     }
 }
-
 void AddKS(bool write, bool rewrite)
 {
     if (write)

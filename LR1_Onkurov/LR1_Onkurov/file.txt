@@ -1,0 +1,11 @@
+Compressor station
+Name:15
+id:15
+dlina:15
+diametr:15
+efektivnost:15%
+Pipe
+Name:15
+id:15
+dlina:15
+diametr:15
