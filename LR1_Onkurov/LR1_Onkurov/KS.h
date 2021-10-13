@@ -12,7 +12,7 @@ struct KS
 };
 bool CheckNumberOfKSMenu(string numberOfMenu)
 {
-    char arrayNumbersOfMenu[6] = { '0','1','2','3','4','6'};
+    char arrayNumbersOfMenu[6] = { '0','1','2','3','4','5'};
     int stop = 0;
     if (numberOfMenu.length() == 1)
     {
@@ -103,6 +103,9 @@ void PunctesOfKSMenu(char numberOfmenu, KS Obj)
             }
         }
         break;
+    case'5':
+        cout << "yes";
+        break;
     }
 }
 bool CheckKSAlphabet(string arrayOfNumbers)
@@ -121,11 +124,11 @@ bool CheckKSAlphabet(string arrayOfNumbers)
     }
     if (stop != 0)
     {
-        return false;
+        return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 void PrintKS(KS Obj)
@@ -153,7 +156,6 @@ bool CheckEffektivost(string numbersOfEffektivnost)
     if (numbersOfEffektivnost.length() < 4)
     {
         int stop = 0;
-        
         for (int i = 0; i < numbersOfEffektivnost.length(); ++i)
         {
             for (int j = 0; j < 10; ++j)
@@ -161,10 +163,8 @@ bool CheckEffektivost(string numbersOfEffektivnost)
                 if (numbersOfEffektivnost[i] == arrayNumbersOfMenu[j])
                 {
                     ++stop;
-                }
-                
+                }   
             }
-            
         }
         if (stop == numbersOfEffektivnost.length())
         {
@@ -244,16 +244,16 @@ void AddKS(bool write, bool rewrite)
                 system("cls");
                 cout << "Effektivnost':";
                 cin >> KSname.efektivnost;
-                if (CheckAlphabet(KSname.kolvocehovvrabote)&&CheckEffektivost(KSname.efektivnost))
+                if (CheckKSAlphabet(KSname.efektivnost)&&CheckEffektivost(KSname.efektivnost))
+                {
+                    stopForNumbers = false;
+                    cout << endl;
+                }
+                else
                 {
                     system("cls");
                     cout << "Incorrect Input" << endl;;
                     system("pause");
-                }
-                else
-                {
-                    stopForNumbers = false;
-                    cout << endl;
                 }
             }
         
