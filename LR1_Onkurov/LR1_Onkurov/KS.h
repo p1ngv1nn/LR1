@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+bool dontstop; bool pause;
 struct KS
 {
     string Name;
@@ -9,31 +10,98 @@ struct KS
     string kolvocehovvrabote;
     string efektivnost;
 };
+bool CheckNumberOfKSMenu(string numberOfMenu)
+{
+    char arrayNumbersOfMenu[6] = { '0','1','2','3','4','6'};
+    int stop = 0;
+    if (numberOfMenu.length() == 1)
+    {
+        int i = 0;
+        for (i; i < 6; ++i)
+        {
+            if (arrayNumbersOfMenu[i] == numberOfMenu[0])
+            {
+                ++stop;
+            }
+        }
+        if (stop == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
 void PrintKSMenu()
 {
     system("cls");
+    cout << "0. Exit" << endl;
     cout << "1. Change Name" << endl;
     cout << "2. Change id" << endl;
     cout << "3. Change kolvocehov" << endl;
     cout << "4. Change kolvocehovvrabote" << endl;
+    cout << "5. Change efektivnost" << endl;
     cout << "Number Of Menu:";
 }
-void PunctesOfKSMenu(int numberOfmenu, KS Obj)
+void PunctesOfKSMenu(char numberOfmenu, KS Obj)
 {
     system("cls");
     switch (numberOfmenu)
     {
-    case 1:
+    case'0':
+        dontstop = false;
+        break;
+    case '1':
         cout << "name:"; cin >> Obj.Name; cout << endl;
         break;
-    case 2:
+    case '2':
         cout << "id:"; cin >> Obj.id; cout << endl;
         break;
-    case 3:
-        cout << "kolvocehov:"; cin >> Obj.kolvocehov; cout << endl;
+    case '3':
+        pause = true;
+        while (pause)
+        {
+            system("cls");
+            cout << "dlina:";
+            cin >> Obj.kolvocehov;
+            if (CheckAlphabet(Obj.kolvocehov))
+            {
+             system("cls");
+             cout << "Incorrect Input" << endl;;
+             system("pause");
+            }
+            else
+            {
+                 pause = false;
+                 cout << endl;
+            }
+        }
         break;
-    case 4:
-        cout << "efektivnost:"; cin >> Obj.kolvocehovvrabote; cout << endl;
+    case '4':
+        pause = true;
+        while (pause)
+        {
+            system("cls");
+            cout << "dlina:";
+            cin >> Obj.kolvocehovvrabote;
+            if (CheckAlphabet(Obj.kolvocehovvrabote))
+            {
+                system("cls");
+                cout << "Incorrect Input" << endl;;
+                system("pause");
+            }
+            else
+            {
+                pause = false;
+                cout << endl;
+            }
+        }
         break;
     }
 }
@@ -79,17 +147,50 @@ void PrintKS(KS Obj)
     
 }
 KS KSname = {};
+bool CheckEffektivost(string numbersOfEffektivnost)
+{
+    char arrayNumbersOfMenu[10] = { '0','1','2','3','4','6','7','8','9'};
+    if (numbersOfEffektivnost.length() < 4)
+    {
+        int stop = 0;
+        
+        for (int i = 0; i < numbersOfEffektivnost.length(); ++i)
+        {
+            for (int j = 0; j < 10; ++j)
+            {
+                if (numbersOfEffektivnost[i] == arrayNumbersOfMenu[j])
+                {
+                    ++stop;
+                }
+                
+            }
+            
+        }
+        if (stop == numbersOfEffektivnost.length())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
 void AddKS(bool write, bool rewrite)
 {
     if (write)
     {
         bool pravilnost = true;
+        system("cls");
+        cout << "name:"; cin >> KSname.Name; cout << endl;
+        system("cls");
+        cout << "id:"; cin >> KSname.id; cout << endl;
         while (pravilnost)
         {
-            system("cls");
-            cout << "name:"; cin >> KSname.Name; cout << endl;
-            system("cls");
-            cout << "id:"; cin >> KSname.id; cout << endl;
             bool stopForNumbers = true;
             while (stopForNumbers)
             {
@@ -112,7 +213,7 @@ void AddKS(bool write, bool rewrite)
             while (stopForNumbers)
             {
                 system("cls");
-                cout << "kolvocehovvrabote";
+                cout << "kolvocehovvrabote:";
                 cin >> KSname.kolvocehovvrabote;
                 if (CheckAlphabet(KSname.kolvocehovvrabote))
                 {
@@ -126,26 +227,58 @@ void AddKS(bool write, bool rewrite)
                     cout << endl;
                 }
             }
-            if (KSname.kolvocehov > KSname.kolvocehovvrabote)
+            if (KSname.kolvocehovvrabote <= KSname.kolvocehov)
             {
-                cout << "kolvocehov doljno bit bolshe chem kolvocehov v rabote" << endl;
-                system("pause");
+                pravilnost = false;
             }
             else
             {
+                system("cls");
+                cout << "kolvocehov doljno bit bolshe chem kolvocehovvrabote" << endl;
                 system("pause");
-                pravilnost = false;
             }
         }
+            bool stopForNumbers = true;
+            while (stopForNumbers)
+            {
+                system("cls");
+                cout << "Effektivnost':";
+                cin >> KSname.efektivnost;
+                if (CheckAlphabet(KSname.kolvocehovvrabote)&&CheckEffektivost(KSname.efektivnost))
+                {
+                    system("cls");
+                    cout << "Incorrect Input" << endl;;
+                    system("pause");
+                }
+                else
+                {
+                    stopForNumbers = false;
+                    cout << endl;
+                }
+            }
+        
     }
     else 
     {
         if (rewrite)
         {
-            int numberOfMenu;
-            PrintKSMenu();
-            cin >> numberOfMenu;
-            PunctesOfKSMenu(numberOfMenu,KSname);
+            string numberOfMenu;
+            dontstop = true;
+            while (dontstop)
+            {
+                PrintKSMenu();
+                cin >> numberOfMenu;
+                if (CheckNumberOfKSMenu(numberOfMenu))
+                {
+                    PunctesOfKSMenu(numberOfMenu[0], KSname);
+                }
+                else
+                {
+                    system("cls");
+                    cout << "Incorrect Input" << endl;;
+                    system("pause");
+                }
+            }
         }
         else
         {

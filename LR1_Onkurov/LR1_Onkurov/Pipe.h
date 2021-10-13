@@ -16,20 +16,20 @@ bool CheckNumberOfPipeMenu(string numberOfMenu)
     if (numberOfMenu.length() == 1)
     {
         int i = 0;
-        for (i; i < 8; ++i)
+        for (i; i < 5; ++i)
         {
             if (arrayNumbersOfMenu[i] == numberOfMenu[0])
             {
                 ++stop;
             }
         }
-        if (stop != 0)
+        if (stop == 1)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
     else
