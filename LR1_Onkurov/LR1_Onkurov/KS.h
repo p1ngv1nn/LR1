@@ -48,67 +48,7 @@ void PrintKSMenu()
     cout << "4. Change kolvocehovvrabote" << endl;
     cout << "5. Change efektivnost" << endl;
     cout << "Number Of Menu:";
-}
-void PunctesOfKSMenu(char numberOfmenu, KS Obj)
-{
-    system("cls");
-    switch (numberOfmenu)
-    {
-    case'0':
-        dontstop = false;
-        break;
-    case '1':
-        cout << "name:"; cin >> Obj.Name; cout << endl;
-        break;
-    case '2':
-        cout << "id:"; cin >> Obj.id; cout << endl;
-        break;
-    case '3':
-        pause = true;
-        while (pause)
-        {
-            system("cls");
-            cout << "dlina:";
-            cin >> Obj.kolvocehov;
-            if (CheckAlphabet(Obj.kolvocehov))
-            {
-             system("cls");
-             cout << "Incorrect Input" << endl;;
-             system("pause");
-            }
-            else
-            {
-                 pause = false;
-                 cout << endl;
-            }
-        }
-        break;
-    case '4':
-        pause = true;
-        while (pause)
-        {
-            system("cls");
-            cout << "dlina:";
-            cin >> Obj.kolvocehovvrabote;
-            if (CheckAlphabet(Obj.kolvocehovvrabote))
-            {
-                system("cls");
-                cout << "Incorrect Input" << endl;;
-                system("pause");
-            }
-            else
-            {
-                pause = false;
-                cout << endl;
-            }
-        }
-        break;
-    case'5':
-        cout << "yes";
-        break;
-    }
-}
-bool CheckKSAlphabet(string arrayOfNumbers)
+}bool CheckKSAlphabet(string arrayOfNumbers)
 {
     char arrayNumbersOfMenu[10] = { '0','1','2','3','4','5','6','7','8','9' };
     int stop = 0;
@@ -168,11 +108,11 @@ bool CheckEffektivost(string numbersOfEffektivnost)
         }
         if (stop == numbersOfEffektivnost.length())
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
     else
@@ -180,6 +120,83 @@ bool CheckEffektivost(string numbersOfEffektivnost)
         return false;
     }
 }
+void PunctesOfKSMenu(char numberOfmenu, KS Obj)
+{
+    system("cls");
+    switch (numberOfmenu)
+    {
+    case'0':
+        dontstop = false;
+        break;
+    case '1':
+        cout << "name:"; cin >> Obj.Name; cout << endl;
+        break;
+    case '2':
+        cout << "id:"; cin >> Obj.id; cout << endl;
+        break;
+    case '3':
+        pause = true;
+        while (pause)
+        {
+            system("cls");
+            cout << "dlina:";
+            cin >> Obj.kolvocehov;
+            if (CheckAlphabet(Obj.kolvocehov))
+            {
+             system("cls");
+             cout << "Incorrect Input" << endl;;
+             system("pause");
+            }
+            else
+            {
+                 pause = false;
+                 cout << endl;
+            }
+        }
+        break;
+    case '4':
+        pause = true;
+        while (pause)
+        {
+            system("cls");
+            cout << "dlina:";
+            cin >> Obj.kolvocehovvrabote;
+            if (CheckAlphabet(Obj.kolvocehovvrabote))
+            {
+                system("cls");
+                cout << "Incorrect Input" << endl;;
+                system("pause");
+            }
+            else
+            {
+                pause = false;
+                cout << endl;
+            }
+        }
+        break;
+    case'5':
+        pause = true;
+        while (pause)
+        {
+            system("cls");
+            cout << "Effektivnost':";
+            cin >> Obj.efektivnost;
+            if (CheckKSAlphabet(Obj.efektivnost) && CheckEffektivost(Obj.efektivnost))
+            {
+                pause = false;
+                cout << endl;
+            }
+            else
+            {
+                system("cls");
+                cout << "Incorrect Input" << endl;;
+                system("pause");
+            }
+        }
+        break;
+    }
+}
+
 void AddKS(bool write, bool rewrite)
 {
     if (write)
@@ -256,7 +273,6 @@ void AddKS(bool write, bool rewrite)
                     system("pause");
                 }
             }
-        
     }
     else 
     {
